@@ -9,7 +9,4 @@ public class Tag {
     private Long id;
 
     private String tag;
-
-    @ManyToOne
-    private Article article;
 }

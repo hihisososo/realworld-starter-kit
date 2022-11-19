@@ -3,15 +3,14 @@ package com.hihisososo.realworld.entity;
 import javax.persistence.*;
 
 @Entity
-public class Tagging {
+public class Following {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Article article;
+    @ManyToOne
+    private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Tag tag;
-
+    @ManyToOne
+    private User following;
 }

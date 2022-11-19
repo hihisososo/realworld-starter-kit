@@ -1,7 +1,6 @@
 package com.hihisososo.realworld.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "t_user")
@@ -14,5 +13,4 @@ public class User {
     private String username;
     private String bio;
     private String image;
-
 }

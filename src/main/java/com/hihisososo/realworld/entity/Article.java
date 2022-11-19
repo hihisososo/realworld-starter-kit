@@ -1,11 +1,9 @@
 package com.hihisososo.realworld.entity;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 
 @Entity
-public class Article extends BaseEntity{
+public class Article extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,7 +14,7 @@ public class Article extends BaseEntity{
     private boolean favorited;
     private int favoritesCount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
 }

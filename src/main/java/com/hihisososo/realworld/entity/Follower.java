@@ -3,14 +3,14 @@ package com.hihisososo.realworld.entity;
 import javax.persistence.*;
 
 @Entity
-public class Follow {
+public class Follower {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private User follower;
+    private User user;
 
     @ManyToOne
-    private User following;
+    private User follower;
 }
