@@ -1,4 +1,4 @@
-package com.hihisososo.realworld.config;
+package com.hihisososo.realworld.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -19,6 +19,5 @@ public class SecurityConfig {
         http.csrf().disable();
         return http.build();
     }
-
 
 }
