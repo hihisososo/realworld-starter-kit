@@ -1,12 +1,10 @@
 package com.hihisososo.realworld.security.util;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClaims;
 import io.jsonwebtoken.impl.DefaultJws;
 import lombok.extern.log4j.Log4j2;
-
 
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -17,9 +15,9 @@ public class JWTUtil {
 
     private String secretKey = "hihisososo";
 
-    private long expire = 60 * 24* 30;
+    private long expire = 60 * 24 * 30;
 
-    public String generateToken(String content) throws Exception{
+    public String generateToken(String content) throws Exception {
 
         return Jwts.builder()
                 .setIssuedAt(new Date())
@@ -29,7 +27,7 @@ public class JWTUtil {
                 .compact();
     }
 
-    public String validateAndExtract(String tokenStr)throws Exception {
+    public String validateAndExtract(String tokenStr) throws Exception {
 
         String contentValue = null;
 
@@ -48,8 +46,7 @@ public class JWTUtil {
             contentValue = claims.getSubject();
 
 
-
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
             contentValue = null;

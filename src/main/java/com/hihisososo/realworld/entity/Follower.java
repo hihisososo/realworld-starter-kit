@@ -9,8 +9,8 @@ public class Follower {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private Member user;
 
     @ManyToOne
-    private User follower;
+    private Member follower;
 }

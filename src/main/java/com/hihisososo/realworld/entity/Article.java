@@ -15,6 +15,6 @@ public class Article extends BaseEntity {
     private int favoritesCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Member user;
 
 }
