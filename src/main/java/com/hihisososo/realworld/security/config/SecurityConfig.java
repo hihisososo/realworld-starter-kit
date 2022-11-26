@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/api/users/**").permitAll()
                 .antMatchers("/api/user/**").hasRole("USER")
+                .antMatchers("/api/profiles/{username:[a-z0-9]+}").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);

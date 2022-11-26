@@ -36,7 +36,7 @@ public class MemberController {
     }
 
     @PutMapping("/user")
-    public ResponseEntity put(HttpServletRequest request,@RequestBody @Valid MemberUpdateDTO memberUpdateDTO) {
+    public ResponseEntity put(HttpServletRequest request, @RequestBody @Valid MemberUpdateDTO memberUpdateDTO) {
         return ResponseEntity.ok(memberService.update(request.getHeader(AUTHORIZATION), memberUpdateDTO));
     }
 }

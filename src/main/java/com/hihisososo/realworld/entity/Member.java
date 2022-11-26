@@ -15,9 +15,9 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Member {
     @Id
+    private String username;
     private String email;
     private String password;
-    private String username;
     private String bio;
     private String image;
 
