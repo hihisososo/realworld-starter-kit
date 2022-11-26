@@ -6,13 +6,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityUtil {
 
-    public static String getCurrentMemberUsername() {
+    public static String getCurrentMemberEmail() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication.getName() == null) {
             throw new RuntimeException("No authentication information.");
         }
         MemberUserDetailsDTO detailsDTO = (MemberUserDetailsDTO) authentication.getPrincipal();
-        return detailsDTO.getUsername();
+        return detailsDTO.getEmail();
     }
 
     public static boolean isAuthenticated(){

@@ -12,25 +12,37 @@ public class MemberUpdateDTO {
     @Valid
     private Member user;
 
-    public String getEmail() {
-        return this.user.getEmail();
+    public Member getMember() {
+        return user;
     }
 
-    public String getBio() {
-        return this.user.getBio();
+    public String getUsername() {
+        return user.username;
+    }
+
+    public String getPassword() {
+        return user.password;
     }
 
     public String getImage() {
-        return this.user.image;
+        return user.image;
+    }
+
+    public String getBio() {
+        return user.bio;
+    }
+
+    public String getEmail() {
+        return user.email;
     }
 
     @Data
     private class Member {
         @NotEmpty
         private String email;
-        @NotEmpty
-        private String bio;
-        @NotEmpty
+        private String username;
+        private String password;
         private String image;
+        private String bio;
     }
 }

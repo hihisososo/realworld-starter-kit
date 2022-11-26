@@ -20,7 +20,6 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-
     private final MemberRepository memberRepository;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
@@ -60,14 +59,14 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberResponseDTO get(String token) {
-        return toResponseDTO(memberRepository.findByUsername(SecurityUtil.getCurrentMemberUsername()).get(), token);
+        return toResponseDTO(memberRepository.findByUsername(SecurityUtil.getCurrentMemberEmail()).get(), token);
     }
 
     @Override
     public MemberResponseDTO update(String token, MemberUpdateDTO memberUpdateDTO) {
 
         Member member = memberRepository.findByEmail(memberUpdateDTO.getEmail()).get();
-        member.update(memberUpdateDTO.getEmail(), memberUpdateDTO.getBio(), memberUpdateDTO.getImage());
+        member.change(memberUpdateDTO);
         memberRepository.save(member);
         return toResponseDTO(member, token);
     }

@@ -16,4 +16,6 @@ public interface ProfileService {
                 ));
         return dto;
     }
+
+    ProfileResponseDTO follow(String username);
 }
