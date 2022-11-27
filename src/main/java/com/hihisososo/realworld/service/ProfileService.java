@@ -4,7 +4,7 @@ import com.hihisososo.realworld.dto.ProfileResponseDTO;
 import com.hihisososo.realworld.entity.Member;
 
 public interface ProfileService {
-    ProfileResponseDTO get(String username);
+    ProfileResponseDTO get(String token, String username);
 
     default ProfileResponseDTO toResponseDTO(Member member, boolean isFollowing) {
         ProfileResponseDTO dto = new ProfileResponseDTO(
@@ -18,4 +18,5 @@ public interface ProfileService {
     }
 
     ProfileResponseDTO follow(String username);
+    ProfileResponseDTO unfollow(String username);
 }

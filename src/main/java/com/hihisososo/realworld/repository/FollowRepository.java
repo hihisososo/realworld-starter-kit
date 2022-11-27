@@ -9,4 +9,5 @@ import java.util.Optional;
 
 public interface FollowRepository extends JpaRepository<Follow, String> {
     Optional<Follow> findByFromEmailAndToEmail(@Param("fromEmail")String fromEmail, @Param("toEmail")String toEmail);
+    Optional<Follow> deleteByFromEmailAndToEmail(@Param("fromEmail")String fromEmail, @Param("toEmail")String toEmail);
 }

@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class MemberUserDetailsDTO extends User {
     }
 
     public static UserDetails from(Member member) {
-        MemberUserDetailsDTO dto = new MemberUserDetailsDTO(member.getEmail(), member.getPassword(), List.of());
+        MemberUserDetailsDTO dto = new MemberUserDetailsDTO(member.getEmail(), member.getPassword(), new ArrayList<>());
         dto.setEmail(member.getEmail());
         dto.setUsername(member.getUsername());
         dto.setBio(member.getBio());

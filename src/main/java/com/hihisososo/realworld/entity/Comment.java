@@ -1,24 +1,18 @@
 package com.hihisososo.realworld.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Follow{
+public class Comment extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String body;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member from;
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member to;
-
+    private Article article;
 }

@@ -9,6 +9,9 @@ import com.hihisososo.realworld.security.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.Optional;
+
 @Service
 public class ProfileServiceImpl implements ProfileService {
 
@@ -18,10 +21,10 @@ public class ProfileServiceImpl implements ProfileService {
     private FollowRepository followRepository;
 
     @Override
-    public ProfileResponseDTO get(String username) {
+    public ProfileResponseDTO get(String token, String username) {
         Member member = memberRepository.findByUsername(username).get();
         boolean isFollow = false;
-        if (SecurityUtil.isAuthenticated()) {
+        if (Optional.ofNullable(token).isPresent()) {
             isFollow = followRepository.findByFromEmailAndToEmail(SecurityUtil.getCurrentMemberEmail(), member.getEmail()).isPresent();
         }
 
@@ -39,6 +42,17 @@ public class ProfileServiceImpl implements ProfileService {
 
         followRepository.save(follow);
         return toResponseDTO(member, true);
+    }
+
+
+    @Override
+    @Transactional
+    public ProfileResponseDTO unfollow(String username) {
+        Member member = memberRepository.findByUsername(username).get();
+        String from = SecurityUtil.getCurrentMemberEmail();
+
+        followRepository.deleteByFromEmailAndToEmail(from, member.getEmail());
+        return toResponseDTO(member, false);
     }
 
 }

@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -24,8 +26,6 @@ public class MemberServiceImpl implements MemberService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
-
-    private static final Set<String> updateAcceptField = Set.of("email", "username", "password", "image", "bio");
 
     @Transactional
     public MemberResponseDTO login(MemberLoginDTO memberLoginDTO) {
@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberResponseDTO get(String token) {
-        return toResponseDTO(memberRepository.findByUsername(SecurityUtil.getCurrentMemberEmail()).get(), token);
+        return toResponseDTO(memberRepository.findByEmail(SecurityUtil.getCurrentMemberEmail()).get(), token);
     }
 
     @Override
